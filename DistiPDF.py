@@ -41,12 +41,13 @@ def generar_menu(opciones):
 def menu_principal():
     opciones = {
         '1': ('Unir dos archivos', uneArchivos),
-        '2': ('Extraer páginas consecutivas', extraePaginas),
-        '3': ('Separar páginas en archivos PDF', separaPaginas),
-        '4': ('Separar páginas en imagenes JPG', convierteJPG),
-        '5': ('Rotar páginas', rotaPaginas),
-        '6': ('Unir todos los archivos del directorio', uneArchivos),
+        '2': ('Unir todos los archivos del directorio', uneArchivosDirectorio),
+        '3': ('Extraer páginas consecutivas', extraePaginas),
+        '4': ('Separar páginas en archivos PDF', separaPaginas),
+        '5': ('Separar páginas en imagenes JPG', convierteJPG),
+        '6': ('Rotar páginas', rotaPaginas),
         '7': ('Borrar una página del archivo', borraPagina),
+        '8': ('Leer texto (OCR)', leeTexto)
     }
 
     generar_menu(opciones) # El segundo parámetro es la opción para salir

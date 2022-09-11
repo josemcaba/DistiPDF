@@ -1,6 +1,10 @@
 import os
-from PyPDF2 import PdfFileReader, PdfFileWriter
-#from shutil import rmtree
+from pdf2image import convert_from_path
+import pytesseract
+from shutil import rmtree
+from imutils import paths
+import cv2
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 def leeTexto():
     fn = input('Nombre del archivo : ')
@@ -10,19 +14,29 @@ def leeTexto():
         input('\nPulse ENTER para continuar')
         return()
 
-    textoCompleto = ''
-    pdf_Reader = PdfFileReader(fp)
-    numPaginas = pdf_Reader.getNumPages()
-    for p in range(numPaginas):
-        page = pdf_Reader.getPage(p)
-        pageContent = page.extractText().replace('\n','')
-        textoCompleto += pageContent
+    fn += '-JPG'
+    if os.path.exists(fn):
+        rmtree(fn)
+    os.mkdir(fn)
 
+    print('\nLeyendo archivo ...')
+
+    pages = convert_from_path(fp, dpi=400, 
+                              output_folder=fn, fmt='jpeg',
+                              output_file='')     
+
+    textoCompleto = ''
+    for imagePath in paths.list_images(fn):
+        image = cv2.imread(imagePath)
+        #image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        # use Tesseract to OCR the image
+        texto = pytesseract.image_to_string(image)
+        textoCompleto += texto
 
     with open(fn+'.txt', 'w') as archivo:
         archivo.write(textoCompleto)
 
-    print('\nCreado el nuevo archivo   :', fn+'.txt')
+    print('\nCreado el nuevo archivo :', fn+'.txt')
 
-    input('\nPulse ENTER para continuar')
-
+    input('\nPulse ENTER para continuar')    
+    
