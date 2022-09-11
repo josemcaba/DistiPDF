@@ -8,52 +8,49 @@ from rotarPaginasPDF import rotaPaginas
 from unirArchivosDirectorioPDF import uneArchivosDirectorio
 from borrarPaginaPDF import borraPagina
 
-while True:
-    os.system('cls')
-    print('\nManipulación de Archivos PDF (V1.0)')
-    print(  '===================================\n')
+def mostrar_menu(opciones):
+    print('\nManipulación de Archivos PDF')
+    print('============================')
+    for clave in sorted(opciones):
+        print(' {} - {}'.format(clave, opciones[clave][0]))
+    print(' 0 - Salir')
 
-    print('1 - Unir dos archivos')
-    print('2 - Extraer páginas consecutivas')
-    print('3 - Separar páginas en archivos PDF')
-    print('4 - Separar páginas en imagenes JPG')
-    print('5 - Rotar páginas')
-    print('6 - Unir todos los archivos del directorio')
-    print('7 - Borrar una página del archivo')
-    print('0 - Salir')
+def leer_opcion(opciones):
+    while (a := input('\nOpción: ')) not in opciones:
+        if a == '0': break
+        print('Opción incorrecta, vuelva a intentarlo.')        
+    return a
 
-    print('\nSeleccione opción: ', end='')
+def ejecutar_opcion(opcion, opciones):
+    if opcion == '0':
+        salir()
+    else:
+        opciones[opcion][1]()
 
-    opcion = input()
-    if (opcion == '1'):
-        print('\nUnir dos archivos')
-        print(  '-----------------')
-        uneArchivos()
-    elif (opcion == '2'):
-        print('\nExtraer páginas consecutivas')
-        print(  '----------------------------')
-        extraePaginas() 
-    elif (opcion == '3'):
-        print('\nSeparar en archivos PDF')
-        print(  '-----------------------')
-        separaPaginas()
-    elif (opcion == '4'):
-        print('\nSeparar páginas en imagenes JPG')
-        print(  '-------------------------------')
-        convierteJPG()
-    elif (opcion == '5'):
-        print('\nRotar páginas')
-        print(  '-------------')
-        rotaPaginas()
-    elif (opcion == '6'):
-        print('\nUnir los archivos del directorio')
-        print(  '--------------------------------')
-        uneArchivosDirectorio()
-    elif (opcion == '7'):
-        print('\nBorrar una página del archivo')
-        print(  '-----------------------------')
-        borraPagina()   
-    elif (opcion == '0'):
-        print('Adios')
-        break
+def salir():
+    print('Saliendo ...')
+
+def generar_menu(opciones):
+    opcion = None
+    while opcion != '0':   # El 0 es la opcion de salida
+        mostrar_menu(opciones)
+        opcion = leer_opcion(opciones)
+        ejecutar_opcion(opcion, opciones)
+        print() # se imprime una línea en blanco para clarificar la salida por pantalla
+
+def menu_principal():
+    opciones = {
+        '1': ('Unir dos archivos', uneArchivos),
+        '2': ('Extraer páginas consecutivas', extraePaginas),
+        '3': ('Separar páginas en archivos PDF', separaPaginas),
+        '4': ('Separar páginas en imagenes JPG', convierteJPG),
+        '5': ('Rotar páginas', rotaPaginas),
+        '6': ('Unir todos los archivos del directorio', uneArchivos),
+        '7': ('Borrar una página del archivo', borraPagina),
+    }
+
+    generar_menu(opciones) # El segundo parámetro es la opción para salir
+
+if __name__ == '__main__':
+    menu_principal()
 
