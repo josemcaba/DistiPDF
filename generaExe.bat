@@ -1,0 +1,1 @@
+pyinstaller --clean --onefile  DistiPDF.py
