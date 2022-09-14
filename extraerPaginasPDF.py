@@ -1,7 +1,7 @@
 import os
 from PyPDF2 import PdfFileReader, PdfFileWriter
 
-def extraePaginas():
+def extraePaginasPDF():
     fn = input('Nombre del archivo : ')
     fp = fn + '.pdf'
     if not os.path.exists(fp):

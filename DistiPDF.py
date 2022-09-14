@@ -1,14 +1,15 @@
 import os
 from unirArchivosPDF import uneArchivos
-from extraerPaginasPDF import extraePaginas
+from extraerPaginasPDF import extraePaginasPDF
 from separarPaginasPDF import separaPaginas
-from convertirJPG import convierteJPG
+from extraerPaginasJPG import extraePaginasJPG
 from leerTextoPDF import leeTexto
 from rotarPaginasPDF import rotaPaginas
 from unirArchivosDirectorioPDF import uneArchivosDirectorio
 from borrarPaginaPDF import borraPagina
 
 def mostrar_menu(opciones):
+    os.system('cls')
     print('\nManipulación de Archivos PDF')
     print('============================')
     for clave in sorted(opciones):
@@ -42,9 +43,9 @@ def menu_principal():
     opciones = {
         '1': ('Unir dos archivos', uneArchivos),
         '2': ('Unir todos los archivos del directorio', uneArchivosDirectorio),
-        '3': ('Extraer páginas consecutivas', extraePaginas),
+        '3': ('Extraer páginas consecutivas', extraePaginasPDF),
         '4': ('Separar páginas en archivos PDF', separaPaginas),
-        '5': ('Separar páginas en imagenes JPG', convierteJPG),
+        '5': ('Separar páginas en imagenes JPG', extraePaginasJPG),
         '6': ('Rotar páginas', rotaPaginas),
         '7': ('Borrar una página del archivo', borraPagina),
         '8': ('Leer texto (OCR)', leeTexto)
