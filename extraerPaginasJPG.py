@@ -21,16 +21,16 @@ def extraePaginasJPG():
 
     print('\nCreando nuevo directorio y archivos ...')
 
-    i = 1
+    i = 0
     lote = 5 # Convertimos de 5 en 5 paginas para evitar overflow de memoria
-    for numPage in range(1, numPages, lote): 
+    for numPage in range(0, numPages, lote): 
         pages = convert_from_path(fp, dpi=350, thread_count = lote, # Un thread para cada archivo para una mas rapida conversion paralela
-                                  first_page=numPage, last_page=numPage+(lote-1)) 
+                                  first_page=numPage+1, last_page=numPage+lote) 
 
         for page in pages:
-            image_name = os.path.join(fn, "Page_" + str(i) + ".jpg")  
-            page.save(image_name, "JPEG")
             i = i+1
+            image_name = os.path.join(fn, "Page_{}.jpg".format(str(i)))  
+            page.save(image_name, "JPEG")
 
     print('\nGenerados {} archivos JPG en el directorio {}'.format(numPages, fn))
 
