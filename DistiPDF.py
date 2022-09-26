@@ -7,6 +7,7 @@ from leerTextoPDF import leeTexto
 from rotarPaginasPDF import rotaPaginas
 from unirArchivosDirectorioPDF import uneArchivosDirectorio
 from borrarPaginaPDF import borraPagina
+from borrarVariasPaginasPDF import borraVariasPaginas
 
 def mostrar_menu(opciones):
     os.system('cls')
@@ -48,7 +49,8 @@ def menu_principal():
         '5': ('Separar páginas en imagenes JPG', extraePaginasJPG),
         '6': ('Rotar páginas', rotaPaginas),
         '7': ('Borrar una página del archivo', borraPagina),
-        '8': ('Leer texto (OCR)', leeTexto)
+        '8': ('Borrar varias páginas del archivo', borraVariasPaginas),
+        '9': ('Leer texto (OCR)', leeTexto)
     }
 
     generar_menu(opciones) # El segundo parámetro es la opción para salir

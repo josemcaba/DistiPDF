@@ -24,12 +24,12 @@ def separaPaginas():
     else:
         dc = 1
 
-    fn += '-PDF'
+    fn += '-PDFs'
     if os.path.exists(fn):
         rmtree(fn)
     os.mkdir(fn)
 
-    print('\nCreado nuevo directorio y archivos:\n')
+    print('\nCreado nuevo directorio y archivos ...\n')
 
     pdf_Reader = PdfFileReader(fp,'rb')
     numPaginas = pdf_Reader.getNumPages()
@@ -38,9 +38,10 @@ def separaPaginas():
         pdf_Writer.addPage(pdf_Reader.getPage(pagina).rotateClockwise(rot))
         if (dc == 2) and (pagina < numPaginas-1):
             pdf_Writer.addPage(pdf_Reader.getPage(pagina+1).rotateClockwise(rot))
-        fo = os.path.join(fn, fn+'_'+str(pagina+1)+'.pdf')
-        print(fo)
+        fo = os.path.join(fn, 'Pagina_'+str(pagina+1)+'.pdf')
         with open(fo,'wb') as archivo:
             pdf_Writer.write(archivo)
+
+    print('\nGenerados {} archivos PDF en el directorio {}'.format(numPaginas, fn))
 
     input('\nPulse ENTER para continuar')
