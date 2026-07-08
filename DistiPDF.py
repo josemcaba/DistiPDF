@@ -42,14 +42,14 @@ def generar_menu(opciones):
 
 def menu_principal():
     opciones = {
-        '1': ('Unir dos archivos', uneArchivos),
-        '2': ('Unir todos los archivos del directorio', uneArchivosDirectorio),
-        '3': ('Extraer páginas consecutivas', extraePaginasPDF),
-        '4': ('Separar páginas en archivos PDF', separaPaginas),
-        '5': ('Separar páginas en imagenes JPG', extraePaginasJPG),
-        '6': ('Rotar páginas', rotaPaginas),
-        '7': ('Borrar una página del archivo', borraPagina),
-        '8': ('Borrar varias páginas del archivo', borraVariasPaginas),
+        '1': ('Unir dos archivos PDF', uneArchivos),
+        '2': ('Unir todos los archivos PDF del directorio', uneArchivosDirectorio),
+        '3': ('Extraer páginas PDF consecutivas', extraePaginasPDF),
+        '4': ('Separar páginas PDF en archivos PDF', separaPaginas),
+        '5': ('Separar páginas PDF en imagenes JPG', extraePaginasJPG),
+        '6': ('Rotar páginas PDF', rotaPaginas),
+        '7': ('Borrar una página del archivo PDF', borraPagina),
+        '8': ('Borrar varias páginas del archivo PDF', borraVariasPaginas),
         '9': ('Leer texto (OCR)', leeTexto)
     }
 
