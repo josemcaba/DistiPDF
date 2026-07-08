@@ -10,7 +10,7 @@ from borrarPaginaPDF import borraPagina
 from borrarVariasPaginasPDF import borraVariasPaginas
 
 def mostrar_menu(opciones):
-    os.system('cls')
+    os.system('clear')
     print('\nManipulación de Archivos PDF')
     print('============================')
     for clave in sorted(opciones):
