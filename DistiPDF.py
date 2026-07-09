@@ -8,14 +8,15 @@ from rotarPaginasPDF import rotaPaginas
 from unirArchivosDirectorioPDF import uneArchivosDirectorio
 from borrarPaginaPDF import borraPagina
 from borrarVariasPaginasPDF import borraVariasPaginas
+from convertirJPGsAPDF import convertirJPGsAPDF
 
 def mostrar_menu(opciones):
     os.system('clear')
     print('\nManipulación de Archivos PDF')
     print('============================')
-    for clave in sorted(opciones):
+    for clave in opciones:
         print(' {} - {}'.format(clave, opciones[clave][0]))
-    print(' 0 - Salir')
+    print(' 0 -  Salir')
 
 def leer_opcion(opciones):
     while (a := input('\nOpción: ')) not in opciones:
@@ -42,15 +43,16 @@ def generar_menu(opciones):
 
 def menu_principal():
     opciones = {
-        '1': ('Unir dos archivos PDF', uneArchivos),
-        '2': ('Unir todos los archivos PDF del directorio', uneArchivosDirectorio),
-        '3': ('Extraer páginas PDF consecutivas', extraePaginasPDF),
-        '4': ('Separar páginas PDF en archivos PDF', separaPaginas),
-        '5': ('Separar páginas PDF en imagenes JPG', extraePaginasJPG),
-        '6': ('Rotar páginas PDF', rotaPaginas),
-        '7': ('Borrar una página del archivo PDF', borraPagina),
-        '8': ('Borrar varias páginas del archivo PDF', borraVariasPaginas),
-        '9': ('Leer texto (OCR)', leeTexto)
+        '1': (' Unir dos archivos PDF', uneArchivos),
+        '2': (' Unir todos los archivos PDF del directorio', uneArchivosDirectorio),
+        '3': (' Extraer páginas PDF consecutivas', extraePaginasPDF),
+        '4': (' Separar páginas PDF en archivos PDF', separaPaginas),
+        '5': (' Separar páginas PDF en imagenes JPG', extraePaginasJPG),
+        '6': (' Rotar páginas PDF', rotaPaginas),
+        '7': (' Borrar una página del archivo PDF', borraPagina),
+        '8': (' Borrar varias páginas del archivo PDF', borraVariasPaginas),
+        '9': (' Leer texto (OCR)', leeTexto),
+        '10': ('Convertir JPGs a PDF', convertirJPGsAPDF)
     }
 
     generar_menu(opciones) # El segundo parámetro es la opción para salir
